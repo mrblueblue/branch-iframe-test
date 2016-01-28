@@ -1,0 +1,93 @@
+<!doctype html>
+	<head>
+		<meta charset="utf-8">
+		<title>Branch Banner iFrame Test</title>
+		<script src="assets/js/jquery-1.6.4.min.js"></script>
+		<script src="assets/js/underscore-min.js"></script>
+		<script src="assets/js/backbone-min.js"></script>
+		<script src="assets/js/application.js"></script>
+	</head>
+
+	<body>
+
+		<ul class="pills">
+			<li class="home-pill"><a>Home</a></li>
+			<li class="about-pill"><a>About</a></li>
+			<li class="contact-pill"><a>Contact</a></li>
+		</ul>
+
+		<div id="home-page" class="pages">Hi I'm the home page!</div>
+		<div id="about-page" class="pages">Hi I'm the about page!</div>
+		<div id="contact-page" class="pages">Hi I'm the contact page!</div>
+		<div id="no-href"/>
+		<script>
+
+			$(function() {
+				var $frame = $('<iframe src="about:blank" style="width:200px; height:100px;">');
+				$('#no-href').html( $frame );
+				setTimeout( function() {
+					var doc = $frame[0].contentWindow.document;
+					var $body = $('body',doc);
+					$body.html("<a target='_parent'>CLICK ME</a>");
+				}, 1 );
+			});
+
+			(function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-v1.8.8.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode banner closeBanner creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setIdentity track validateCode".split(" "), 0);
+
+			branch.init('YOUR KEY HERE')
+
+			branch.banner({
+				icon: 'http://icons.iconarchive.com/icons/wineass/ios7-redesign/512/Appstore-icon.png',
+				title: 'Branch Demo App',
+				description: 'The Branch demo app!',
+				rating: 5,                              // Displays a star rating out of 5. Supports half stars through increments of .5
+				reviewCount: 1500,                      // Amount of reviews your app has received next to the star rating
+				theme: 'light',                         // Overrides the default color theme of the banner. Possible values 'light' or 'dark'.
+				openAppButtonText: 'Open',              // Text to show on button if the user has the app installed
+				downloadAppButtonText: 'Download',      // Text to show on button if the user does not have the app installed
+				sendLinkText: 'Send Link',              // Text to show on desktop button to allow users to text themselves the app
+				phonePreviewText: '+44 9999-9999',      // The default phone placeholder is a US format number, localize the placeholder number with a custom placeholder with this option
+				buttonBorderColor: null,                // Overrides the default button border color
+				buttonBackgroundColor: null,            // Overrides the default button background color
+				buttonFontColor: null,                  // Overrides the default button font color
+				buttonBorderColorHover: null,           // Overrides the default button border color during mouse over
+				buttonBackgroundColorHover: null,       // Overrides the default button background color during mouse over
+				buttonFontColorHover: null,             // Overrides the default button font color during mouse over
+				showiOS: true,                          // Should the banner be shown on iOS devices (both iPhones and iPads)?
+				showiPad: true,                         // Should the banner be shown on iPads (this overrides showiOS)?
+				showAndroid: true,                      // Should the banner be shown on Android devices?
+				showBlackberry: true,                   // Should the banner be shown on Blackberry devices?
+				showWindowsPhone: true,                 // Should the banner be shown on Windows Phone devices?
+				showKindle: true,                       // Should the banner be shown on Kindle devices?
+				showDesktop: true,                      // Should the banner be shown on desktop devices?
+				iframe: true,                           // Show banner in an iframe, recomended to isolate Branch banner CSS
+				disableHide: false,                     // Should the user have the ability to hide the banner? (show's X on left side)
+				forgetHide: false,                      // Should we show the banner after the user closes it? Can be set to true, or an integer to show again after X days
+				position: 'top',                        // Sets the position of the banner, options are: 'top' or 'bottom', and the default is 'top'
+				mobileSticky: false,                    // Determines whether the mobile banner will be set `position: fixed;` (sticky) or `position: absolute;`, defaults to false *this property only applies when the banner position is 'top'
+				desktopSticky: true,                    // Determines whether the desktop banner will be set `position: fixed;` (sticky) or `position: absolute;`, defaults to true *this property only applies when the banner position is 'top'
+				customCSS: '.title { color: #F00; }',   // Add your own custom styles to the banner that load last, and are gauranteed to take precedence, even if you leave the banner in an iframe
+				make_new_link: false,                   // Should the banner create a new link, even if a link already exists?
+				open_app: false,                        // Should the banner try to open the app passively (without the user actively clicking) on load?
+
+			}, {
+				tags: ['tag1', 'tag2'],
+				feature: 'dashboard',
+				stage: 'new user',
+				data: {
+					mydata: 'something',
+					foo: 'bar',
+					'$desktop_url': 'http://myappwebsite.com',
+					'$ios_url': 'http://myappwebsite.com/ios',
+					'$ipad_url': 'http://myappwebsite.com/ipad',
+					'$android_url': 'http://myappwebsite.com/android',
+					'$og_app_id': '12345',
+					'$og_title': 'My App',
+					'$og_description': 'My app\'s description.',
+					'$og_image_url': 'http://myappwebsite.com/image.png'
+				}
+			});
+
+		</script>
+	</body>
+</html>
